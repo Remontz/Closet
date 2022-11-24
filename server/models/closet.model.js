@@ -114,6 +114,9 @@ const ClosetSchema = new mongoose.Schema({
         required: [true, 'Closet name is required.'],
         minLength: [4, 'Closet Name must be at least 4 characters']
     },
+    closetImage: {
+        type: String
+    },
     // shirt
     shirts: {
         type: [shirtSchema]
