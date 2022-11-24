@@ -1,0 +1,47 @@
+.body {
+
+}
+
+.closet-container {
+    padding: 20px;
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+.closet-container > h2 {
+    align-self: flex-end;
+    padding-right: 15%;
+    font-style: oblique;
+}
+.allClosets {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    padding: 40px;
+    max-width: 1500px;
+    height: 500px
+}
+
+.closet-icon {
+
+}
+
+.newCloset {
+    display: flex;
+    gap: 50px;
+    justify-content: flex-end;
+    padding-right: 15% ;
+    align-content: center;
+}
+.newCloset > p {
+    align-self: flex-end;
+}
+
+#createPlus {
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    font-size: xx-large;
+    background-color: orangered
+}

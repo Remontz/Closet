@@ -18,23 +18,25 @@ const DisplayAllClosets = () => {
 
     return (
         <div className='body'>
+            <h1>Welcome to Closets</h1>
+            <h4>by GilbertDEV</h4>
             <div className='closet-container'>
                 <div className='allClosets'>
                     {allClosets.map((closet, index) => {
                         return (
                             <div key={closet._id} className='closet-icon'>
-                                <img src={closet.closetImage} alt='' />
+                                <img src={closet.closetImage} alt='' height='110px' width='110px' />
                                 <p>{closet.closetName}</p>
                             </div>
                         )
                     })}
                 </div>
-                <h3>Select Your Closet</h3>
+                <h2>Select Your Closet</h2>
             </div>
-            <div>
+            <div className='newCloset'>
                 <p>or Create a <span>NEW</span> Closet</p>
                 <Link to={'/newCloset'}>
-                    <button>+</button>
+                    <button id='createPlus'>+</button>
                 </Link>
             </div>
         </div>
