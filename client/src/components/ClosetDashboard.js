@@ -14,10 +14,12 @@ const ClosetDashboard = (props) => {
     console.log(errors)
     const [user, setUser] = useState({})
     console.log(user)
+    const [userName, setUserName] = useState("")
     const [closetName, setClosetName] = useState("")
     console.log(closetName)
     const [closetImage, setClosetImage] = useState("")
     console.log(closetImage)
+    console.log("Shirts and Pants")
     const [shirts, setShirts] = useState({})
     console.log(shirts)
     const [pants, setPants] = useState({})
@@ -30,9 +32,11 @@ const ClosetDashboard = (props) => {
                 setCloset(response.data)
                 setUser(response.data.user)
                 console.log(user)
+                setUserName(response.data.user[0].name)
                 setClosetName(response.data.closetName)
                 setClosetImage(response.data.closetImage)
                 setShirts(response.data.shirts)
+                console.log(response.data.shirts)
                 setPants(response.data.pants)
             })
             .catch((err) => {
@@ -44,7 +48,7 @@ const ClosetDashboard = (props) => {
     return (
         <div className='dash-body'>
             <div className='dash-nav'>
-                <div className='title'><h1>{user[0].name}'s Dashboard</h1> </div>
+                <div className='title'><h1>{userName}'s Dashboard</h1> </div>
                 <div className='nav-links'>
                     <Link to={`/laundry/${closet._id}`}>
                         <img src='https://cdn-icons-png.flaticon.com/512/3721/3721818.png' alt='' height='30px' width='30px' />
@@ -79,15 +83,26 @@ const ClosetDashboard = (props) => {
                     </ul>
                 </div>
                 <div className='dash-center'>
-                    <div id='tops'>
-                        <button>scroll</button>
-                        <img src='' alt='' height='' width='' />
-                        <button>scroll</button>
+                    <div id='tops' width='100px' height='100px'>
+                        {/* <button onClick={() => { shirtIndex = shirtIndex - 1 }}>scroll</button>
+
+                        <img src='' alt='' height='100px' width='100px' />
+                        <button onClick={() => { shirtIndex = shirtIndex + 1 }}>scroll</button> */}
                     </div>
-                    <div id='continue'></div>
-                    <div id='bottm'></div>
+                    <div id='continue'>
+                        <button id='createPlus'>+</button>
+                    </div>
+                    <div id='bottom' width='100px' height='100px'>
+                        {/* <button onClick={() => { pantIndex = pantIndex - 1 }}>scroll</button>
+                        <img src={pants[0]} alt='' height='100px' width='100px' />
+                        <button onClick={() => { pantIndex = pantIndex + 1 }}>scroll</button> */}
+                    </div>
                 </div>
-                <div className='dash-right'></div>
+                <div className='dash-right'>
+                    <img src='' alt='' height='120px' width='120px' />
+                    <p><span>##</span> times worn</p>
+
+                </div>
             </div>
         </div>
     )
