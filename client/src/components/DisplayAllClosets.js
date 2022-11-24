@@ -25,7 +25,9 @@ const DisplayAllClosets = () => {
                     {allClosets.map((closet, index) => {
                         return (
                             <div key={closet._id} className='closet-icon'>
-                                <img src={closet.closetImage} alt='' height='110px' width='110px' />
+                                <Link to={`/dashboard/${closet._id}`}>
+                                    <img src={closet.closetImage} alt='' height='110px' width='110px' />
+                                </Link>
                                 <p>{closet.closetName}</p>
                             </div>
                         )
