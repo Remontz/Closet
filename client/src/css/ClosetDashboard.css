@@ -58,14 +58,22 @@
 }
 
 #tops {
-    width: 230px;
-    height: 230px;
-    background-color: teal;
+    max-width: 500px;
+    max-height: 500px;
+    border: black dashed 1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+#tops > button {
+    justify-self: center;
+    height: 50px;
 }
 #bottom {
-    width: 230px;
-    height: 230px;
-    background-color: tomato;
+    width: 250px;
+    height: 250px;
+    border: black dashed 1px
 }
 
 #continue > #createPlus {
@@ -75,13 +83,13 @@
 
 .closet-links {
     margin: 0;
-    padding: 10% 5% 10% 0px;
+    padding: 10% 0% 0% 0px;
     list-style: none;
     background-repeat: no-repeat;
     background-position: left center;
-    background-size: 80px;
-    font-size: xx-large;
-    text-align: right;
+    background-size: 40px;
+    font-size: large;
+    text-align: center;
 }
 
 #shirts {    
@@ -97,17 +105,14 @@
     background-image: url(../../../z_addtls/Icons_Images/Icons/shoes.jfif);
 }
 #accessories {    
-    padding-left: 50px;
     background-image: url(../../../z_addtls/Icons_Images/Icons/accessories.png);
 }
 #pajamas {    
     background-image: url(../../../z_addtls/Icons_Images/Icons/pajamas.png);
 }
-#warm {  
-    padding-left: 80px;  
+#warm {   
     background-image: url(../../../z_addtls/Icons_Images/Icons/warm.jfif);
 }
-#cold {
-    padding-left: 80px;    
+#cold {  
     background-image: url(../../../z_addtls/Icons_Images/Icons/cold.jfif);
 }
