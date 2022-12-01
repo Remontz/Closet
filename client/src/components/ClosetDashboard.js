@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import { Link, useParams } from 'react-router-dom'
 import '../App.css'
@@ -6,24 +6,18 @@ import '../App.css'
 
 const ClosetDashboard = (props) => {
     const { id } = useParams()
-
     const [closet, setCloset] = useState({})
-    console.log(closet)
-
+    const scrolls = useRef(0)
     const [errors, setErrors] = useState({})
-    console.log(errors)
     const [user, setUser] = useState({})
-    console.log(user)
     const [userName, setUserName] = useState("")
     const [closetName, setClosetName] = useState("")
-    console.log(closetName)
     const [closetImage, setClosetImage] = useState("")
-    console.log(closetImage)
     console.log("Shirts and Pants")
-    const [shirts, setShirts] = useState({})
-    console.log(shirts)
+    const [shirts, setShirts] = useState([])
     const [pants, setPants] = useState({})
-    console.log(pants)
+    const currentShirt = useRef("")
+    const [shirtCurrent, setShirtCurrent] = useState()
 
     useEffect(() => {
         axios
@@ -31,19 +25,45 @@ const ClosetDashboard = (props) => {
             .then((response) => {
                 setCloset(response.data)
                 setUser(response.data.user)
-                console.log(user)
                 setUserName(response.data.user[0].name)
                 setClosetName(response.data.closetName)
                 setClosetImage(response.data.closetImage)
                 setShirts(response.data.shirts)
-                console.log(response.data.shirts)
                 setPants(response.data.pants)
+                currentShirt.current = shirts[scrolls.current].imageURL
+                console.log(currentShirt)
+                console.log(currentShirt.current)
             })
             .catch((err) => {
-                console.log(err.response)
                 setErrors(err.response.data)
             })
     }, [])
+
+
+    const handleNextShirt = (idFromBelow) => {
+        axios.get(`http://localhost:8000/api/closet/${idFromBelow}`)
+            .then((response) => {
+                scrolls.current = scrolls.current + 1
+                currentShirt.current = shirts[scrolls.current].imageURL
+                setShirts(response.data.shirts)
+            })
+            .catch((err) => {
+                console.log('error scrolling', err.response)
+                setErrors(err.response)
+                console.log(errors)
+            })
+    }
+    const handlePreviousShirt = (idFromBelow) => {
+        axios.get(`http://localhost:8000/api/closet/${idFromBelow}`)
+            .then((response) => {
+
+            })
+            .catch((err) => {
+                console.log('error scrolling', err.response)
+                setErrors(err.response)
+                console.log(errors)
+            })
+    }
 
     return (
         <div className='dash-body'>
@@ -69,25 +89,25 @@ const ClosetDashboard = (props) => {
             <div className='dash-main'>
                 <div className='dash-left'>
                     <ul>
-                        <li id='shirts'>View All Shirts</li>
-                        <li id='pants'>View All Pants</li>
-                        <li id='dresses'>View All Dresses</li>
-                        <li id='shoes'>View All Shoes</li>
-                        <li id='accessories'>View Hats/Accessories</li>
-                        <li id='pajamas'>View All Pajamas</li>
+                        <li className='closet-links' id='shirts'>View All Shirts</li>
+                        <li className='closet-links' id='pants'>View All Pants</li>
+                        <li className='closet-links' id='dresses'>View All Dresses</li>
+                        <li className='closet-links' id='shoes'>View All Shoes</li>
+                        <li className='closet-links' id='accessories'>View Hats/Accessories</li>
+                        <li className='closet-links' id='pajamas'>View All Pajamas</li>
                     </ul>
                     <br />
                     <ul>
-                        <li id='warm'>View Warm WX Clothes</li>
-                        <li id='cold'>View Cold WX Clothes</li>
+                        <li className='closet-links' id='warm'>View Warm WX Clothes</li>
+                        <li className='closet-links' id='cold'>View Cold WX Clothes</li>
                     </ul>
                 </div>
                 <div className='dash-center'>
-                    <div id='tops' width='100px' height='100px'>
-                        {/* <button onClick={() => { shirtIndex = shirtIndex - 1 }}>scroll</button>
 
-                        <img src='' alt='' height='100px' width='100px' />
-                        <button onClick={() => { shirtIndex = shirtIndex + 1 }}>scroll</button> */}
+                    <div id='tops' width='100px' height='100px'>
+                        <button onClick={() => handleNextShirt(closet._id)}>scroll</button>
+                        <img src={currentShirt.current} alt='' height='100px' width='100px' />
+                        <button onClick={() => handlePreviousShirt(closet._id)}>scroll</button>
                     </div>
                     <div id='continue'>
                         <button id='createPlus'>+</button>

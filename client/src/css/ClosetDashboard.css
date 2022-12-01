@@ -33,6 +33,14 @@
     outline: 1px dashed orange;
 }
 
+.dash-left > ul {
+    display: flex;
+    flex-direction: column;
+}
+.dash-left > ul > li {
+    width: 350px;
+}
+
 .dash-center {
     outline: 1px dashed orange;
     display: flex;
@@ -65,75 +73,41 @@
     width: 110px;
 }
 
-#shirts {    
+.closet-links {
     margin: 0;
     padding: 10% 5% 10% 0px;
     list-style: none;
-    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/000/554/949/small/t-shirt_003.jpg);
     background-repeat: no-repeat;
     background-position: left center;
-    background-size: 30px;
+    background-size: 80px;
+    font-size: xx-large;
+    text-align: right;
+}
+
+#shirts {    
+    background-image: url(../../../z_addtls/Icons_Images/Icons/shirts.jpg);
 }
 #pants {    
-    margin: 0;
-    padding: 10% 5% 10% 0px;
-    list-style: none;
-    background-image: url(../../../z_addtls/Icons_Images/Icons/smile.png);
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 30px;
+    background-image: url(../../../z_addtls/Icons_Images/Icons/pants.jpg);
 }
 #dresses {    
-    margin: 0;
-    padding: 10% 5% 10% 0px;
-    list-style: none;
-    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/000/554/949/small/t-shirt_003.jpg);
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 30px;
+    background-image: url(../../../z_addtls/Icons_Images/Icons/dresses.jpg);
 }
 #shoes {    
-    margin: 0;
-    padding: 10% 5% 10% 0px;
-    list-style: none;
-    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/000/554/949/small/t-shirt_003.jpg);
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 30px;
+    background-image: url(../../../z_addtls/Icons_Images/Icons/shoes.jfif);
 }
 #accessories {    
-    margin: 0;
-    padding: 10% 5% 10% 0px;
-    list-style: none;
-    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/000/554/949/small/t-shirt_003.jpg);
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 30px;
+    padding-left: 50px;
+    background-image: url(../../../z_addtls/Icons_Images/Icons/accessories.png);
 }
 #pajamas {    
-    margin: 0;
-    padding: 10% 5% 10% 0px;
-    list-style: none;
-    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/000/554/949/small/t-shirt_003.jpg);
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 30px;
+    background-image: url(../../../z_addtls/Icons_Images/Icons/pajamas.png);
 }
-#warm {    
-    margin: 0;
-    padding: 10% 5% 10% 0px;
-    list-style: none;
-    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/000/554/949/small/t-shirt_003.jpg);
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 30px;
+#warm {  
+    padding-left: 80px;  
+    background-image: url(../../../z_addtls/Icons_Images/Icons/warm.jfif);
 }
-#cold {    
-    margin: 0;
-    padding: 10% 5% 10% 0px;
-    list-style: none;
-    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/000/554/949/small/t-shirt_003.jpg);
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 30px;
+#cold {
+    padding-left: 80px;    
+    background-image: url(../../../z_addtls/Icons_Images/Icons/cold.jfif);
 }

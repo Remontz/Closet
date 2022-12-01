@@ -33,6 +33,16 @@ const ClosetController = {
                 res.status(404).json({ msg: 'Error encountered when creating closet', error: err })
             })
     },
+    getAllShirts: (req, res) => {
+        Closet
+            .findOne({ _id: req.params.id })
+            .then((result) => {
+                res.json(result.shirts)
+            })
+            .catch((err) => {
+                res.status(404).json({ msg: 'Error encountered when gathering all shirts', error: err })
+            })
+    },
 
     //U
     update: (req, res) => {

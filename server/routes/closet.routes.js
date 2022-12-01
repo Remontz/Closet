@@ -8,6 +8,7 @@ const routes = (app) => {
     //R
     app.get('/api/closet', ClosetController.getAll)
     app.get('/api/closet/:id', ClosetController.getOne)
+    app.get('/api/closet/:id/shirts', ClosetController.getAllShirts)
 
     //U
     app.put('/api/closet/:id', ClosetController.update)
