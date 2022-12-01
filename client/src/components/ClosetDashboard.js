@@ -8,6 +8,7 @@ const ClosetDashboard = (props) => {
     const { id } = useParams()
     const [closet, setCloset] = useState({})
     const scrolls = useRef(0)
+    const scrollsP = useRef(0)
     const [errors, setErrors] = useState({})
     const [user, setUser] = useState({})
     const [userName, setUserName] = useState("")
@@ -15,9 +16,12 @@ const ClosetDashboard = (props) => {
     const [closetImage, setClosetImage] = useState("")
     console.log("Shirts and Pants")
     const [shirts, setShirts] = useState([])
-    const [pants, setPants] = useState({})
     const currentShirt = useRef("")
-    const [shirtCurrent, setShirtCurrent] = useState()
+    const [shirtCurrent, setShirtCurrent] = useState("")
+    const [pants, setPants] = useState({})
+    const currentPant = useRef("")
+    const [pantCurrent, setPantCurrent] = useState("")
+    console.log(pantCurrent)
 
     useEffect(() => {
         axios
@@ -28,14 +32,18 @@ const ClosetDashboard = (props) => {
                 setUserName(response.data.user[0].name)
                 setClosetName(response.data.closetName)
                 setClosetImage(response.data.closetImage)
+
                 setShirts(response.data.shirts)
-                setPants(response.data.pants)
                 currentShirt.current = shirts[scrolls.current].imageURL
-                console.log(currentShirt)
-                console.log(currentShirt.current)
+                setShirtCurrent(currentShirt.current)
+
+                setPants(response.data.pants)
+                currentPant.current = pants[scrollsP.current].imageURL
+                setPantCurrent(currentPant.current)
+
             })
             .catch((err) => {
-                setErrors(err.response.data)
+                setErrors(err.response)
             })
     }, [])
 
@@ -43,9 +51,11 @@ const ClosetDashboard = (props) => {
     const handleNextShirt = (idFromBelow) => {
         axios.get(`http://localhost:8000/api/closet/${idFromBelow}`)
             .then((response) => {
-                scrolls.current = scrolls.current + 1
-                currentShirt.current = shirts[scrolls.current].imageURL
-                setShirts(response.data.shirts)
+                if (scrolls.current !== shirts.length - 1) {
+                    scrolls.current = scrolls.current + 1
+                    currentShirt.current = shirts[scrolls.current].imageURL
+                    setShirtCurrent(currentShirt.current)
+                }
             })
             .catch((err) => {
                 console.log('error scrolling', err.response)
@@ -53,10 +63,39 @@ const ClosetDashboard = (props) => {
                 console.log(errors)
             })
     }
+    const handleNextPant = (idFromBelow) => {
+        axios.get(`http://localhost:8000/api/closet/${idFromBelow}`)
+            .then((response) => {
+                if (scrollsP.current !== pants.length - 1) {
+                    scrollsP.current = scrollsP.current + 1
+                    currentPant.current = pants[scrollsP.current].imageURL
+                    setPantCurrent(currentPant.current)
+                }
+            })
+    }
     const handlePreviousShirt = (idFromBelow) => {
         axios.get(`http://localhost:8000/api/closet/${idFromBelow}`)
             .then((response) => {
-
+                if (scrolls.current > 0) {
+                    scrolls.current = scrolls.current - 1
+                    currentShirt.current = shirts[scrolls.current].imageURL
+                    setShirtCurrent(currentShirt.current)
+                }
+            })
+            .catch((err) => {
+                console.log('error scrolling', err.response)
+                setErrors(err.response)
+                console.log(errors)
+            })
+    }
+    const handlePreviousPant = (idFromBelow) => {
+        axios.get(`http://localhost:8000/api/closet/${idFromBelow}`)
+            .then((response) => {
+                if (scrollsP.current > 0) {
+                    scrollsP.current = scrollsP.current - 1
+                    currentPant.current = pants[scrollsP.current].imageURL
+                    setPantCurrent(currentPant.current)
+                }
             })
             .catch((err) => {
                 console.log('error scrolling', err.response)
@@ -106,16 +145,16 @@ const ClosetDashboard = (props) => {
 
                     <div id='tops' width='100px' height='100px'>
                         <button onClick={() => handleNextShirt(closet._id)}>scroll</button>
-                        <img src={currentShirt.current} alt='' height='100px' width='100px' />
+                        <img src={shirtCurrent} alt='' height='100px' width='100px' />
                         <button onClick={() => handlePreviousShirt(closet._id)}>scroll</button>
                     </div>
                     <div id='continue'>
                         <button id='createPlus'>+</button>
                     </div>
                     <div id='bottom' width='100px' height='100px'>
-                        {/* <button onClick={() => { pantIndex = pantIndex - 1 }}>scroll</button>
-                        <img src={pants[0]} alt='' height='100px' width='100px' />
-                        <button onClick={() => { pantIndex = pantIndex + 1 }}>scroll</button> */}
+                        <button onClick={() => handleNextPant(closet._id)}>scroll</button>
+                        <img src={pantCurrent} alt='' height='100px' width='100px' />
+                        <button onClick={() => handlePreviousPant(closet._id)}>scroll</button>
                     </div>
                 </div>
                 <div className='dash-right'>
