@@ -37,7 +37,7 @@ const DisplayAllClosets = () => {
             </div>
             <div className='newCloset'>
                 <p>or Create a <span>NEW</span> Closet</p>
-                <Link to={'/newCloset'}>
+                <Link to={'/new'}>
                     <button id='createPlus'>+</button>
                 </Link>
             </div>

@@ -1,0 +1,34 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.create-body {
+    outline: 1px dashed black;
+}
+
+.create-nav {
+    outline: 1px dashed red;
+}
+.create-main {
+    outline: 1px dashed red;
+}
+    .create-closet {
+        outline: 1px dashed orange;
+        background-color: orangered
+    }
+    .create-item {
+        outline: 1px dashed orange;
+        background-color: orangered;
+    }
+        .create-shirt {
+            outline: 1px dashed yellow;
+            background-color: yellowgreen;
+        }
+        .create-pant {
+            outline: 1px dashed yellow;
+            background-color: yellowgreen
+        }
+.create-footer {
+    outline: 1px dashed red;
+}

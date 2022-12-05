@@ -29,7 +29,7 @@ const ClosetDashboard = (props) => {
             .then((response) => {
                 setCloset(response.data)
                 setUser(response.data.user)
-                setUserName(response.data.user[0].name)
+                setUserName(response.data.user.name)
                 setClosetName(response.data.closetName)
                 setClosetImage(response.data.closetImage)
 
@@ -130,10 +130,10 @@ const ClosetDashboard = (props) => {
                     <ul>
                         <li className='closet-links' id='shirts'>View All Shirts</li>
                         <li className='closet-links' id='pants'>View All Pants</li>
-                        <li className='closet-links' id='dresses'>View All Dresses</li>
+                        {/* <li className='closet-links' id='dresses'>View All Dresses</li>
                         <li className='closet-links' id='shoes'>View All Shoes</li>
                         <li className='closet-links' id='accessories'>View Hats/Accessories</li>
-                        <li className='closet-links' id='pajamas'>View All Pajamas</li>
+                        <li className='closet-links' id='pajamas'>View All Pajamas</li> */}
                     </ul>
                     <br />
                     <ul>
@@ -157,11 +157,11 @@ const ClosetDashboard = (props) => {
                         <button onClick={() => handlePreviousPant(closet._id)}>scroll</button>
                     </div>
                 </div>
-                <div className='dash-right'>
+                {/* <div className='dash-right'>
                     <img src='' alt='' height='120px' width='120px' />
                     <p><span>##</span> times worn</p>
 
-                </div>
+                </div> */}
             </div>
         </div>
     )

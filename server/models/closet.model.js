@@ -42,7 +42,7 @@ const shirtSchema = new mongoose.Schema({
         type: String,
         minLength: [3, 'Shirt Color must be at least 3 characters']
     }
-})
+}, { timestamps: true })
 const pantSchema = new mongoose.Schema({
     pantMaterial: {
         type: String
@@ -69,7 +69,7 @@ const pantSchema = new mongoose.Schema({
         type: String,
         minLength: [3, 'Shirt Color must be at least 3 characters']
     }
-})
+}, { timestamps: true })
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -81,14 +81,6 @@ const UserSchema = new mongoose.Schema({
         min: [1, 'Age must be listed as at least 1 years old'],
         required: [true, 'User age is required.']
     },
-    sex: {
-        type: String,
-        required: [true, 'You must select a gender.'],
-        enum: {
-            values: ['M', 'F'],
-            message: '{VALUE} is not supported'
-        }
-    },
     email: {
         type: String,
         required: [true, 'Email is required']
@@ -96,17 +88,13 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Password is required'],
-    },
-    confirmPassword: {
-        type: String,
-        required: [true, 'Confirm Password is required']
     }
 }, { timestamps: true })
 User = UserSchema;
 const ClosetSchema = new mongoose.Schema({
     // user
     user: {
-        type: [User]
+        type: User
     },
     // closet name
     closetName: {

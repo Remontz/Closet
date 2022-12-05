@@ -1,0 +1,94 @@
+className='closet-form' onSubmit={createCloset}>
+                        <div className='user-input'>
+                            <div className='form-content'>
+                                <label>User Name:</label>
+                                <input
+                                //     className='userName-input'
+                                //     type='text'
+                                //     name='name'
+                                //     defaultValue={user.name}
+                                //     onChange={(e) => {
+                                //         updatedUserValue = { name: e.target.value }
+                                //         setUser(user => ({
+                                //             ...user,
+                                //             ...updatedUserValue
+                                //         }))
+                                //     }}
+                                />
+                                {/* {errors.user.name ? <p>{errors.user.name.message}</p> : null} */}
+                            </div>
+                            <div className='form-content'>
+                                <label>User Age:</label>
+                                <input
+                                // className='userAge-input'
+                                // type='number'
+                                // min='0'
+                                // value={user.age}
+                                // onChange={(e) => {
+                                //     updatedUserValue = { age: e.target.value }
+                                //     setUser(user => ({
+                                //         ...user,
+                                //         ...updatedUserValue
+                                //     }))
+                                // }}
+                                />
+                                {/* {errors.user.age ? <p>{errors.user.age.message}</p> : null} */}
+                            </div>
+                            <div className='form-content'>
+                                <label>User Email:</label>
+                                <input
+                                // className='userEmail-input'
+                                // type='String'
+                                // value={user.email}
+                                // onChange={(e) => {
+                                //     updatedUserValue = { email: e.target.value }
+                                //     setUser(user => ({
+                                //         ...user,
+                                //         ...updatedUserValue
+                                //     }))
+                                // }}
+                                />
+                                {/* {errors.user.email ? <p>{errors.user.email.message}</p> : null} */}
+                            </div>
+                            <div className='form-content'>
+                                <label>User Password:</label>
+                                <input
+                                // className='userPassword-input'
+                                // type='String'
+                                // value={user.password}
+                                // onChange={(e) => {
+                                //     updatedUserValue = { password: e.target.value }
+                                //     setUser(user => ({
+                                //         ...user,
+                                //         ...updatedUserValue
+                                //     }))
+                                // }}
+                                />
+                                {/* {errors.user.password ? <p>{errors.user.password.message}</p> : null} */}
+                            </div>
+                        </div>
+                        <div className='form-input'>
+                            <label>Closet Name:</label>
+                            <input
+                                className='closetName-input'
+                                type='String'
+                                value={closetName}
+                                onChange={(e) => { setClosetName(e.target.value) }}
+                            />
+                            {errors.user.closetName ? <p>{errors.user.closetName.message}</p> : null}
+                        </div>
+                        <div className='form-input'>
+                            <label>Closet Image URL:</label>
+                            <input
+                                className='closetImage-input'
+                                type='String'
+                                value={closetImage}
+                                onChange={(e) => { setClosetImage(e.target.value) }}
+                            />
+                            {errors.user.closetImage ? <p>{errors.user.closetImage.message}</p> : null}
+                        </div>
+                        <input
+                            className='closetSubmit-btn'
+                            type='submit'
+                            value='Add Closet'
+                        />
