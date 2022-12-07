@@ -119,7 +119,7 @@ const ClosetDashboard = (props) => {
                     </Link>
                 </div>
                 <div>
-                    <Link to={`/newItem`}>
+                    <Link to={`/laundry/${closet._id}`}>
                         <button>Add New Item</button>
                     </Link>
                     <img src='https://www.creativefabrica.com/wp-content/uploads/2019/02/Support-icon-by-arus.jpg' alt='' height='25px' width='25px' />

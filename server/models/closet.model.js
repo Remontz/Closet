@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const shirtSchema = new mongoose.Schema({
+    isWorn: {
+        type: Boolean,
+        required: [true, 'Is shirt in laundry?']
+    },
     shirtType: {
         type: String,
         required: [true, 'Please choose a shirt type.'],
@@ -91,10 +95,12 @@ const UserSchema = new mongoose.Schema({
     }
 }, { timestamps: true })
 User = UserSchema;
+Shirt = shirtSchema;
+Pant = pantSchema;
 const ClosetSchema = new mongoose.Schema({
     // user
     user: {
-        type: User
+        type: [User]
     },
     // closet name
     closetName: {
@@ -107,11 +113,11 @@ const ClosetSchema = new mongoose.Schema({
     },
     // shirt
     shirts: {
-        type: [shirtSchema]
+        type: [Shirt]
     },
     // pants
     pants: {
-        type: [pantSchema]
+        type: [Pant]
     }
     // dresses
 

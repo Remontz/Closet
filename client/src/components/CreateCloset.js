@@ -22,12 +22,17 @@ const CreateCloset = () => {
 
     const [allClosets, setAllClosets] = useState([])
     const [itemCloset, setItemCloset] = useState("")
+    const [allShirts, setAllShirts] = useState([])
+
+
     useEffect(() => {
         axios
             .get('http://localhost:8000/api/closet')
             .then((response) => {
                 console.log('response', response)
                 setAllClosets(response.data)
+                setAllShirts(response.data.shirts)
+                console.log(allShirts)
             })
     }, [])
 
@@ -58,131 +63,116 @@ const CreateCloset = () => {
             <div className='create-nav'>
                 <div>
                     <h2>Create Nav Bar</h2>
+                    <div className='dash-nav'>
+                        <div className='title'><h1>{userName.current}'s Dashboard</h1> </div>
+                        <div className='nav-links'>
+                            <p>Add Proper Nav Links</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className='create-main'>
-                <h2>Create Main Content</h2>
-                <div className='create-closet'>
-                    <h3>Create Closet Form</h3>
-                    <form className='closet-form' onSubmit={createCloset}>
-                        <div className='form-content'>
-                            <label>User Name:</label>
-                            <input
-                                className='userName-input'
-                                type='text'
-                                name='userName'
-                                defaultValue={userName.current}
-                                onChange={(e) => {
-                                    userName.current = (e.target.value)
-                                    updatedUserValue = { name: userName.current }
-                                    setUser(user => ({
-                                        ...user,
-                                        ...updatedUserValue
-                                    }))
+                <div className='create-main'>
+                    <h2>Create Main Content</h2>
+                    <div className='create-closet'>
+                        <h3>Create Closet Form</h3>
+                        <form className='closet-form' onSubmit={createCloset}>
+                            <div className='form-content'>
+                                <label>User Name:</label>
+                                <input
+                                    className='userName-input'
+                                    type='text'
+                                    name='userName'
+                                    defaultValue={userName.current}
+                                    onChange={(e) => {
+                                        userName.current = (e.target.value)
+                                        updatedUserValue = { name: userName.current }
+                                        setUser(user => ({
+                                            ...user,
+                                            ...updatedUserValue
+                                        }))
 
-                                }}
-                            />
-                            {/* {errors.user ? <p>{errors.user.message}</p> : null} */}
-                        </div>
-                        <div>
-                            <label>User Age:</label>
-                            <input
-                                className='userAge-input'
-                                type='text'
-                                name='userAge'
-                                defaultValue={userAge.current}
-                                onChange={(e) => {
-                                    userAge.current = (e.target.value)
-                                    updatedUserValue = { age: userAge.current }
-                                    setUser(user => ({
-                                        ...user,
-                                        ...updatedUserValue
-                                    }))
-                                }}
-                            />
-                        </div>
-                        <div>
-                            <label>User Email:</label>
-                            <input
-                                className='userEmail-input'
-                                type='text'
-                                name='userEmail'
-                                defaultValue={userEmail.current}
-                                onChange={(e) => {
-                                    userEmail.current = (e.target.value)
-                                    updatedUserValue = { email: userEmail.current }
-                                    setUser(user => ({
-                                        ...user,
-                                        ...updatedUserValue
-                                    }))
-                                }}
-                            />
-                        </div>
-                        <div>
-                            <label>User Password:</label>
-                            <input
-                                className='userPassword-input'
-                                type='text'
-                                name='userPassword'
-                                defaultValue={userPassword.current}
-                                onChange={(e) => {
-                                    userPassword.current = (e.target.value)
-                                    updatedUserValue = { password: userPassword.current }
-                                    setUser(user => ({
-                                        ...user,
-                                        ...updatedUserValue
-                                    }))
-                                }}
-                            />
-                        </div>
-                        <div className='form-content'>
-                            <label>Closet Name:</label>
-                            <input
-                                className='closetName-input'
-                                type='text'
-                                value={closetName}
-                                onChange={(e) => setClosetName(e.target.value)}
-                            />
-                            {errors.closetName ? <p>{errors.closetName.message}</p> : null}
-                        </div>
-                        <div className='form-content'>
-                            <label>Closet Image:</label>
-                            <input
-                                className='closetImage-input'
-                                type='text'
-                                value={closetImage}
-                                onChange={(e) => setClosetImage(e.target.value)}
-                            />
-                            {errors.closetImage ? <p>{errors.closetImage.message}</p> : null}
-                        </div>
-                        <input className='submit-btn' type='submit' value='Add Closet' />
-                    </form>
-                </div>
-                <div className='create-item'>
-                    <label htmlFor='itemCloset'>Item Closet</label>
-                    <select name='itemCloset' value={itemCloset} onChange={(e) => {
-                        setItemCloset(e.target.value)
-                    }}>
-                        {allClosets.map((closet, index) => {
-                            return (
-                                <option key={index} value={closet._id}>{closet.closetName}</option>
-                            )
-                        })}
-                    </select>
-                    <h3>Create Item Forms</h3>
-                    <div className='create-shirt'>
-                        <h4>Create Shirt Form</h4>
-                        <form className='shirt-form' >
-
+                                    }}
+                                />
+                                {/* {errors.user ? <p>{errors.user.message}</p> : null} */}
+                            </div>
+                            <div>
+                                <label>User Age:</label>
+                                <input
+                                    className='userAge-input'
+                                    type='text'
+                                    name='userAge'
+                                    defaultValue={userAge.current}
+                                    onChange={(e) => {
+                                        userAge.current = (e.target.value)
+                                        updatedUserValue = { age: userAge.current }
+                                        setUser(user => ({
+                                            ...user,
+                                            ...updatedUserValue
+                                        }))
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <label>User Email:</label>
+                                <input
+                                    className='userEmail-input'
+                                    type='text'
+                                    name='userEmail'
+                                    defaultValue={userEmail.current}
+                                    onChange={(e) => {
+                                        userEmail.current = (e.target.value)
+                                        updatedUserValue = { email: userEmail.current }
+                                        setUser(user => ({
+                                            ...user,
+                                            ...updatedUserValue
+                                        }))
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <label>User Password:</label>
+                                <input
+                                    className='userPassword-input'
+                                    type='text'
+                                    name='userPassword'
+                                    defaultValue={userPassword.current}
+                                    onChange={(e) => {
+                                        userPassword.current = (e.target.value)
+                                        updatedUserValue = { password: userPassword.current }
+                                        setUser(user => ({
+                                            ...user,
+                                            ...updatedUserValue
+                                        }))
+                                    }}
+                                />
+                            </div>
+                            <div className='form-content'>
+                                <label>Closet Name:</label>
+                                <input
+                                    className='closetName-input'
+                                    type='text'
+                                    value={closetName}
+                                    onChange={(e) => setClosetName(e.target.value)}
+                                />
+                                {errors.closetName ? <p>{errors.closetName.message}</p> : null}
+                            </div>
+                            <div className='form-content'>
+                                <label>Closet Image:</label>
+                                <input
+                                    className='closetImage-input'
+                                    type='text'
+                                    value={closetImage}
+                                    onChange={(e) => setClosetImage(e.target.value)}
+                                />
+                                {errors.closetImage ? <p>{errors.closetImage.message}</p> : null}
+                            </div>
+                            <input className='submit-btn' type='submit' value='Add Closet' />
                         </form>
                     </div>
-                    <div className='create-pant'>
-                        <h4>Create Pants Form</h4>
-                    </div>
+
                 </div>
-            </div>
-            <div className='create-footer'>
-                <h2>Create Footer</h2>
+                <div className='create-footer'>
+                    <h2>Create Footer</h2>
+                </div>
             </div>
         </div>
     )
