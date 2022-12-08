@@ -37,11 +37,9 @@ const DisplayLaundry = (props) => {
             })
     }, [])
 
-    const submitHandler = (e) => {
+    const submitHandler = (e, index) => {
         e.preventDefault()
-        for (let i = 0; i < shirts.length; i++) {
-            shirts[i].isWorn = !shirts[i].isWorn
-        }
+        shirts[index].isWorn = !shirts[index].isWorn
         axios
             .put(`http://localhost:8000/api/closet/${id}`, {
                 shirts: shirts
@@ -83,9 +81,9 @@ const DisplayLaundry = (props) => {
                                             <input
                                                 type='checkbox'
                                                 value={shirt.isWorn}
-                                                onChange={(e) => { submitHandler(e) }}
+                                                onChange={(e) => { submitHandler(e, index) }}
                                             />
-                                            Being Cleaned
+                                            Shirts been Washed?
                                         </label>
                                     </div>
                                 </form>
@@ -94,6 +92,32 @@ const DisplayLaundry = (props) => {
                     }
                     else { return (null) }
                 })}
+                <div>
+                    <h4>Clean Clothes</h4>
+                    {shirts.map((shirt, index) => {
+                        if (!shirt.isWorn) {
+                            return (
+                                <div key={index}>
+                                    <img src={shirt.imageURL} alt='' v />
+                                    <p>ShirtType: {shirt.shirtType} Shirt Size: {shirt.size}</p>
+                                    <form className='editShirt'>
+                                        <div>
+                                            <label>
+                                                <input
+                                                    type='checkbox'
+                                                    value={shirt.isWorn}
+                                                    onChange={(e) => { submitHandler(e, index) }}
+                                                />
+                                                Shirt worn?
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+                            )
+                        }
+                        else { return (null) }
+                    })}
+                </div>
             </div>
             <div className='laundry-footer'>
 
