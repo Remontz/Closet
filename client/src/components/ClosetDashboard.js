@@ -112,7 +112,7 @@ const ClosetDashboard = (props) => {
                     <Link to={`/laundry/${closet._id}`}>
                         <img src='https://cdn-icons-png.flaticon.com/512/3721/3721818.png' alt='' height='30px' width='30px' />
                     </Link>
-                    <Link to={`/outfits/${closet._id}`}>
+                    <Link to={`/edit/${closet._id}`}>
                         <img src='https://cdn-icons-png.flaticon.com/512/649/649100.png' alt='' height='30px' weight='30px' />
                     </Link>
                     <Link><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkYSptom0k0BqL39WJ-lZCKoEb0e4gD3-Lg&usqp=CAU' alt='' height='50px' weight='50px' />

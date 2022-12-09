@@ -4,6 +4,7 @@ import DisplayAllClosets from './components/DisplayAllClosets'
 import ClosetDashboard from './components/ClosetDashboard';
 import CreateCloset from './components/CreateCloset';
 import DisplayLaundry from './components/DisplayLaundry';
+import EditCloset from './components/EditCloset';
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<DisplayAllClosets />} />
-          <Route path='/dashboard/:id' element={<ClosetDashboard />} />
           <Route path='/new' element={<CreateCloset />} />
+          <Route path='/dashboard/:id' element={<ClosetDashboard />} />
+          <Route path='/edit/:id' element={<EditCloset />} />
           <Route path='/laundry/:id' element={<DisplayLaundry />} />
         </Routes>
       </BrowserRouter>

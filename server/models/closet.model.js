@@ -20,7 +20,7 @@ const shirtSchema = new mongoose.Schema({
     sleeveType: {
         type: String,
         enum: {
-            values: ['S', 'L', 'None']
+            values: ['Short', 'Long', '3/4', 'None']
         },
         required: [true, 'What type of sleeves does this top have?']
     },
@@ -46,8 +46,12 @@ const shirtSchema = new mongoose.Schema({
         type: String,
         minLength: [3, 'Shirt Color must be at least 3 characters']
     }
-}, { timestamps: true })
+})
 const pantSchema = new mongoose.Schema({
+    isWorn: {
+        type: Boolean,
+        required: [true, 'Is shirt in laundry?']
+    },
     pantMaterial: {
         type: String
     },
@@ -73,7 +77,7 @@ const pantSchema = new mongoose.Schema({
         type: String,
         minLength: [3, 'Shirt Color must be at least 3 characters']
     }
-}, { timestamps: true })
+})
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -93,7 +97,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Password is required'],
     }
-}, { timestamps: true })
+})
 User = UserSchema;
 Shirt = shirtSchema;
 Pant = pantSchema;

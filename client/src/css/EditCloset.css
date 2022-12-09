@@ -1,0 +1,41 @@
+.user-closet-DIV {
+    border: 3px dashed black;
+    display: flex;
+    justify-content: space-between;
+    padding: 0% 10%
+}
+
+.shirts-info {
+    border: 3px dashed black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding-left: 20%;
+}
+.shirt-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px;
+    max-width: 75%;
+}
+
+.type-size-DIV {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.material-length--isWorn-color-DIV {
+    display: flex;
+    flex-direction: space-between;
+    padding: 5px;
+}
+.material-length-DIV, .isWorn-color-DIV {
+    padding: 5px;
+}
+#isWorn {
+    outline: 1px solid black;
+}

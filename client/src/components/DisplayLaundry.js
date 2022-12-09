@@ -13,7 +13,7 @@ const DisplayLaundry = (props) => {
     const navigate = useNavigate()
     const [shirts, setShirts] = useState([])
 
-    const [pants, setPants] = useState({})
+    const [pants, setPants] = useState([])
 
     const [errors, setErrors] = useState([])
 
@@ -73,7 +73,7 @@ const DisplayLaundry = (props) => {
                     if (shirt.isWorn) {
                         return (
                             <div key={index}>
-                                <img src={shirt.imageURL} alt='' v />
+                                <img src={shirt.imageURL} alt='' />
                                 <p>ShirtType: {shirt.shirtType} Shirt Size: {shirt.size}</p>
                                 <form className='editShirt'>
                                     <div>
@@ -98,7 +98,7 @@ const DisplayLaundry = (props) => {
                         if (!shirt.isWorn) {
                             return (
                                 <div key={index}>
-                                    <img src={shirt.imageURL} alt='' v />
+                                    <img src={shirt.imageURL} alt='' />
                                     <p>ShirtType: {shirt.shirtType} Shirt Size: {shirt.size}</p>
                                     <form className='editShirt'>
                                         <div>
