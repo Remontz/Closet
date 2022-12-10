@@ -36,6 +36,11 @@
     width: 65%;
     padding: 25px;
 }
+#box {
+    outline: 1px dashed green;
+    display: flex;
+    justify-content: center;
+}
 .pant-details {
     display: flex;
     flex-direction: row;

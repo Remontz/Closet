@@ -509,13 +509,13 @@ const EditCloset = (props) => {
                             )
                         })}
                     </div>
+                    <h3>Create a Shirt</h3>
                     <button onClick={createShirtForm}>{x ? 'Creating' : 'Create a Shirt'}</button>
                     {
                         x && (
-                            <div>
-                                <h3>Create a Shirt</h3>
-                                <div>Form Here
-                                    <form className='create-shirt-form' onSubmit={createShirtHandler}>
+                            <div id='box'>
+                                <div className='shirt-details'>
+                                    <form className='create-shirt-form shirt-details' onSubmit={createShirtHandler}>
                                         <fieldset className='form-input' id='shirtType'>
                                             <legend>Type of Shirt:</legend>
                                             <div>
@@ -564,6 +564,132 @@ const EditCloset = (props) => {
                                                 <label for='shirtTypeChoice5'>Jacket</label>
                                             </div>
                                         </fieldset>
+                                        <fieldset className='form-input' id='shirtSize'>
+                                            <legend>Size:</legend>
+                                            <div>
+                                                <input
+                                                    name='shirtSize' id='shirtSizeChoice1'
+                                                    type='radio'
+                                                    value='4T'
+                                                    onChange={(e) => { shirtSize.current = '4T' }}
+                                                />
+                                                <label for='shirtSizeChoice1'>4T</label>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    name='shirtSize' id='shirtSizeChoice2'
+                                                    type='radio'
+                                                    value='5T'
+                                                    onChange={(e) => { shirtSize.current = '5T' }}
+                                                />
+                                                <label for='shirtSizeChoice1'>5T</label>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    name='shirtSize' id='shirtSizeChoice3'
+                                                    type='radio'
+                                                    value='6-7'
+                                                    onChange={(e) => { shirtSize.current = '6-7' }}
+                                                />
+                                                <label for='shirtSizeChoice3'>6-7</label>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    name='shirtSize' id='shirtSizeChoice4'
+                                                    type='radio'
+                                                    value='S'
+                                                    onChange={(e) => { shirtSize.current = 'S' }}
+                                                />
+                                                <label for='shirtSizeChoice4'>S</label>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    name='shirtSize' id='shirtSizeChoice5'
+                                                    type='radio'
+                                                    value='M'
+                                                    onChange={(e) => { shirtSize.current = 'M' }}
+                                                />
+                                                <label for='shirtSizeChoice5'>M</label>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    name='shirtSize' id='shirtSizeChoice6'
+                                                    type='radio'
+                                                    value='L'
+                                                    onChange={(e) => { shirtSize.current = 'L' }}
+                                                />
+                                                <label for='shirtSizeChoice6'>L</label>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    name='shirtSize' id='shirtSizeChoice7'
+                                                    type='radio'
+                                                    value='XL'
+                                                    onChange={(e) => { shirtSize.current = 'XL' }}
+                                                />
+                                                <label for='shirtSizeChoice7'>XL</label>
+                                            </div>
+                                        </fieldset>
+                                        <div className='form-inputs'>
+                                            <div className='form-input' id='shirtMaterial'>
+                                                <label>Type of Material:</label>
+                                                <input
+                                                    className='form-input' id='shirtMaterial'
+                                                    type='text'
+                                                    name='shirtMaterial'
+                                                    onChange={(e) => { shirtMaterial.current = (e.target.value) }}
+                                                />
+                                            </div>
+                                            <fieldset className='form-input' id='sleeveLength'>
+                                                <div>
+                                                    <label>
+                                                        Sleeve Length:_
+                                                        <input
+                                                            name='sleeveLength' id='sleeveChoice1'
+                                                            type='radio'
+                                                            value='Short'
+                                                            onChange={(e) => { shirtSleeveType.current = 'Short' }}
+                                                        />Short
+                                                        <input
+                                                            name='sleeveLength' id='sleeveChoice2'
+                                                            type='radio'
+                                                            value='Long'
+                                                            onChange={(e) => { shirtSleeveType.current = 'Long' }}
+                                                        />Long
+                                                        <input
+                                                            name='sleeveLength' id='sleeveChoice3'
+                                                            type='radio'
+                                                            value='3/4'
+                                                            onChange={(e) => { shirtSleeveType.current = '3/4' }}
+                                                        />3/4
+                                                        <input
+                                                            name='sleeveLength' id='sleeveChoice4'
+                                                            type='radio'
+                                                            value='None'
+                                                            onChange={(e) => { shirtSleeveType.current = 'None' }}
+                                                        />None
+                                                    </label>
+                                                </div>
+                                            </fieldset>
+                                            <div className='form-input' id='shirtColor'>
+                                                <label>Color:</label>
+                                                <input
+                                                    className='form-input' id='color'
+                                                    type='text'
+                                                    name='color'
+                                                    onChange={(e) => { shirtColor.current = (e.target.value) }}
+                                                />
+                                            </div>
+                                            <div className='form-data' id='imageURL'>
+                                                <label>Image URL:</label>
+                                                <input
+                                                    className='form-input' id='imageURL'
+                                                    type='text'
+                                                    name='imageURL'
+                                                    onChange={(e) => { shirtImageURL.current = (e.target.value) }}
+                                                />
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
