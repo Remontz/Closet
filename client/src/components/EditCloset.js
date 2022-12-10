@@ -25,8 +25,26 @@ const EditCloset = (props) => {
     const shirtSize = useRef("")
     const shirtColor = useRef("")
     const isShirtWorn = useRef()
+    const [creatingShirt, setCreatingShirt] = useState(false)
+    const x = creatingShirt
 
-    const [pants, setPants] = useState([])
+    const [pants, setPants] = useState([{ isWorn: null, pantMaterial: "", pantLength: null, waistSize: null, weather: "", imageURL: "", color: "" }])
+    const pantWaistSizes = []
+    for (let x = 24; x <= 48; x++) {
+        pantWaistSizes.push(x)
+    }
+    const pantLengthSizes = []
+    for (let y = 20; y <= 60; y++) {
+        pantLengthSizes.push(y)
+    }
+    let updatedPantValue = ""
+    const isPantWorn = useRef()
+    const pantMaterial = useRef("")
+    const pantLength = useRef()
+    const pantWaistSize = useRef()
+    const pantWeather = useRef("")
+    const pantImageURL = useRef("")
+    const pantColor = useRef("")
 
     const [errors, setErrors] = useState([])
 
@@ -112,6 +130,14 @@ const EditCloset = (props) => {
                 setErrors(err.response)
             })
     }
+    const createShirtForm = (e) => {
+        setCreatingShirt(!creatingShirt)
+    }
+    const createShirtHandler = (e) => {
+        e.preventDefault()
+        shirts.push({ shirtType: shirtType.current, shirtMaterial: shirtMaterial.current, sleeveType: shirtSleeveType.current, weather: shirtWeather.current, imageURL: shirtImageURL.current, size: shirtSize.current, color: shirtColor.current, isWorn: isShirtWorn.current })
+    }
+
     const isWornHandler = (e, index) => {
         e.preventDefault()
         shirts[index].isWorn = !shirts[index].isWorn
@@ -231,11 +257,11 @@ const EditCloset = (props) => {
                         {shirts.map((shirt, index) => {
 
                             return (
-                                <div key={index}>
+                                <div className='shirts' key={index}>
                                     <div className='shirt-details'>
-                                        <img src={shirt.imageURL} alt='' />
+                                        <img src={shirt.imageURL} alt='' id='shirtImage' />
                                         <form className='shirt-form'>
-                                            <div className='type-size-DIV'>
+                                            <div className='form-data' id='shirtData'>
                                                 <fieldset className='form-input' id='shirtType'>
                                                     <legend>Type of Shirt:</legend>
                                                     <div>
@@ -350,10 +376,8 @@ const EditCloset = (props) => {
                                                         <label for='shirtSizeChoice7'>XL</label>
                                                     </div>
                                                 </fieldset>
-                                            </div>
-                                            <div className='material-length--isWorn-color-DIV'>
-                                                <div className='material-length-DIV'>
-                                                    <div className='form-data' id='shirtMaterial'>
+                                                <div className='form-inputs'>
+                                                    <div className='form-input' id='shirtMaterial'>
                                                         <label>Type of Material:</label>
                                                         <input
                                                             className='form-input' id='shirtMaterial'
@@ -370,7 +394,7 @@ const EditCloset = (props) => {
                                                             }}
                                                         />
                                                     </div>
-                                                    <fieldset className='form-data' id='sleeveLength'>
+                                                    <fieldset className='form-input' id='sleeveLength'>
                                                         <div>
                                                             <label>
                                                                 Sleeve Length:_
@@ -401,9 +425,7 @@ const EditCloset = (props) => {
                                                             </label>
                                                         </div>
                                                     </fieldset>
-                                                </div>
-                                                <div className='isWorn-color-DIV'>
-                                                    <div className='form-data' id='isWorn'>
+                                                    <div className='form-input' id='isWorn'>
                                                         <label>
                                                             <input
                                                                 name='isWorn' id='isWorn'
@@ -414,7 +436,7 @@ const EditCloset = (props) => {
                                                             Shirt worn?
                                                         </label>
                                                     </div>
-                                                    <div className='form-data' id='shirtColor'>
+                                                    <div className='form-input' id='shirtColor'>
                                                         <label>Color:</label>
                                                         <input
                                                             className='form-input' id='color'
@@ -433,37 +455,37 @@ const EditCloset = (props) => {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <br />
                                             <fieldset className='form-data' id='weather'>
+                                                <label> Best Time to Wear? </label>
                                                 <div>
-                                                    <label>
-                                                        Best Time to Wear?
-                                                        <input
-                                                            name="shirtWeather" id='shirtWeatherChoice1'
-                                                            type='checkbox'
-                                                            value='Winter'
-                                                            onChange={(e) => { weatherChoiceHandler(e, index, 'Winter') }}
-                                                        />Winter
-                                                        <input
-                                                            name="shirtWeather" id='shirtWeatherChoice2'
-                                                            type='checkbox'
-                                                            value='Spring'
-                                                            onChange={(e) => { weatherChoiceHandler(e, index, 'Spring') }}
-                                                        />Spring
-                                                        <input
-                                                            name="shirtWeather" id='shirtWeatherChoice3'
-                                                            type='checkbox'
-                                                            value='Summer'
-                                                            onChange={(e) => { weatherChoiceHandler(e, index, 'Summer') }}
-                                                        />Summer
-                                                        <input
-                                                            name="shirtWeather" id='shirtWeatherChoice4'
-                                                            type='checkbox'
-                                                            value='Fall'
-                                                            onChange={(e) => { weatherChoiceHandler(e, index, 'Fall') }}
-                                                        />Fall
-                                                    </label>
+                                                    <input
+                                                        name="shirtWeather" id='shirtWeatherChoice1'
+                                                        type='checkbox'
+                                                        value='Winter'
+                                                        onChange={(e) => { weatherChoiceHandler(e, index, 'Winter') }}
+                                                    />Winter
+                                                    <input
+                                                        name="shirtWeather" id='shirtWeatherChoice2'
+                                                        type='checkbox'
+                                                        value='Spring'
+                                                        onChange={(e) => { weatherChoiceHandler(e, index, 'Spring') }}
+                                                    />Spring
+                                                    <input
+                                                        name="shirtWeather" id='shirtWeatherChoice3'
+                                                        type='checkbox'
+                                                        value='Summer'
+                                                        onChange={(e) => { weatherChoiceHandler(e, index, 'Summer') }}
+                                                    />Summer
+                                                    <input
+                                                        name="shirtWeather" id='shirtWeatherChoice4'
+                                                        type='checkbox'
+                                                        value='Fall'
+                                                        onChange={(e) => { weatherChoiceHandler(e, index, 'Fall') }}
+                                                    />Fall
                                                 </div>
                                             </fieldset>
+                                            <br />
                                             <div className='form-data' id='imageURL'>
                                                 <label>Image URL:</label>
                                                 <input
@@ -487,47 +509,209 @@ const EditCloset = (props) => {
                             )
                         })}
                     </div>
-                    <h6>Create A Shirt</h6>
+                    <button onClick={createShirtForm}>{x ? 'Creating' : 'Create a Shirt'}</button>
+                    {
+                        x && (
+                            <div>
+                                <h3>Create a Shirt</h3>
+                                <div>Form Here
+                                    <form className='create-shirt-form' onSubmit={createShirtHandler}>
+                                        <fieldset className='form-input' id='shirtType'>
+                                            <legend>Type of Shirt:</legend>
+                                            <div>
+                                                <input
+                                                    name='shirtType' id='shirtTypeChoice1'
+                                                    type='radio'
+                                                    value='T-Shirt'
+                                                    onChange={(e) => { shirtType.current = 'T-Shirt' }}
+                                                />
+                                                <label for='shirtTypeChoice1'>T-Shirt</label>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    name='shirtType' id='shirtTypeChoice2'
+                                                    type='radio'
+                                                    value='Dress Shirt'
+                                                    onChange={(e) => { shirtType.current = 'Dress Shirt' }}
+                                                />
+                                                <label for='shirtTypeChoice2'>Dress Shirt</label>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    name='shirtType' id='shirtTypeChoice3'
+                                                    type='radio'
+                                                    value='Sweater'
+                                                    onChange={(e) => { shirtType.current = 'Sweater' }}
+                                                />
+                                                <label for='shirtTypeChoice3'>Sweater</label>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    name='shirtType' id='shirtTypeChoice4'
+                                                    type='radio'
+                                                    value='Jersey'
+                                                    onChange={(e) => { shirtType.current = 'Jersey' }}
+                                                />
+                                                <label for='shirtTypeChoice4'>Jersey</label>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    name='shirtType' id='shirtTypeChoice5'
+                                                    type='radio'
+                                                    value='Jacket'
+                                                    onChange={(e) => { shirtType.current = 'Jacket' }}
+                                                />
+                                                <label for='shirtTypeChoice5'>Jacket</label>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        )
 
+                    }
+
+                    <h3>Edit or Add Pants</h3>
                     <div className='pants-info'>
-                        <h3>Edit or Add Pants</h3>
                         {/* //Show All Pants
                         //Edit Fields underneath each Pant
                         //Add Pant */}
                         {pants.map((pant, index) => {
                             return (
-                                <div key={index}>
-                                    <img src={pant.imageURL} alt='' />
+                                <div className='pants' key={index}>
                                     <div className='pant-details'>
                                         <form className='pant-form'>
-                                            <div className='form-data'>
-                                                <label>Material</label>
+                                            <fieldset className='form-data' id='pantWeather'>
+                                                <label>
+                                                    Best Time to Wear?
+                                                    <input
+                                                        name="pantWeather" id='pantWeatherChoice1'
+                                                        type='checkbox'
+                                                        value='Winter'
+                                                        onChange={(e) => { weatherChoiceHandler(e, index, 'Winter') }}
+                                                    />Winter
+                                                    <input
+                                                        name="pantWeather" id='pantWeatherChoice2'
+                                                        type='checkbox'
+                                                        value='Spring'
+                                                        onChange={(e) => { weatherChoiceHandler(e, index, 'Spring') }}
+                                                    />Spring
+                                                    <input
+                                                        name="pantWeather" id='pantWeatherChoice3'
+                                                        type='checkbox'
+                                                        value='Summer'
+                                                        onChange={(e) => { weatherChoiceHandler(e, index, 'Summer') }}
+                                                    />Summer
+                                                    <input
+                                                        name="pantWeather" id='pantWeatherChoice4'
+                                                        type='checkbox'
+                                                        value='Fall'
+                                                        onChange={(e) => { weatherChoiceHandler(e, index, 'Fall') }}
+                                                    />Fall
+                                                </label>
+                                            </fieldset>
+                                            <div className='length-waist--material-color'>
+                                                <div className='length-waist'>
+                                                    <div className='form-data' id='pantLength'>
+                                                        <label htmlFor='pantLength'>Length: </label>
+                                                        <select name='pantLength'>
+                                                            {pantLengthSizes.map((size, idx) => {
+                                                                if (idx % 2 === 0) {
+                                                                    return (
+                                                                        <option value={size}><p>{size} - {size + 2}</p> </option>
+                                                                    )
+                                                                }
+                                                                else { return (<p>----------</p>) }
+                                                            })}
+                                                        </select>
+                                                    </div>
+                                                    <div className='form-data' id='pantWaistSize'>
+                                                        <label htmlFor='pantWaistSize'>Waist: </label>
+                                                        <select name='pantWaistSize'>
+                                                            {pantWaistSizes.map((size, idx) => {
+                                                                if (idx % 2 === 0) {
+                                                                    return (
+                                                                        <option value={size}><p>{size} - {size + 2}</p> </option>
+                                                                    )
+                                                                }
+                                                                else { return (<p>----------</p>) }
+                                                            })}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div className='material-color'>
+                                                    <div className='form-data' id='pantColor'>
+                                                        <label></label>
+                                                        <input
+                                                            className='form-input' id='pantColor'
+                                                            type='text'
+                                                            name='pantColor'
+                                                            defaultValue={pant.color}
+                                                            onChange={(e) => {
+                                                                pantColor.current = (e.target.value)
+                                                                updatedPantValue = { color: pantColor.current }
+                                                                setPants(pant => ({
+                                                                    ...pant,
+                                                                    ...updatedPantValue
+                                                                }))
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className='form-data' id='pantMaterial'>
+                                                        <label></label>
+                                                        <input
+                                                            className='form-input' id='pantMaterial'
+                                                            type='text'
+                                                            name='pantMaterial'
+                                                            defaultValue={pant.pantMaterial}
+                                                            onChange={(e) => {
+                                                                pantMaterial.current = (e.target.value)
+                                                                updatedPantValue = { pantMaterial: pantMaterial.current }
+                                                                setPants(pant => ({
+                                                                    ...pant,
+                                                                    ...updatedPantValue
+                                                                }))
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className='form-data'>
-                                                <label>Length</label>
-                                            </div>
-                                            <div className='form-data'>
-                                                <label>Waist:</label>
-                                            </div>
-                                            <div className='form-data'>
-                                                <label>Best Season to Wear:</label>
-                                            </div>
-                                            <div className='form-data'>
+                                            <div className='form-data' id='pantImageURL'>
                                                 <label>Image URL</label>
+                                                <input
+                                                    className='form-input' id='pantImageURL'
+                                                    type='text'
+                                                    name='pantImageURL'
+                                                    defaultValue={pant.imageURL}
+                                                    onChange={(e) => {
+                                                        pantImageURL.current = (e.target.value)
+                                                        updatedPantValue = { imageURL: pantImageURL.current }
+                                                        setPants(pant => ({
+                                                            ...pant,
+                                                            ...updatedPantValue
+                                                        }))
+                                                    }}
+                                                />
                                             </div>
-                                            <div className='form-data'>
-                                                <label>Color</label>
-                                            </div>
-                                            <div className='form-data'>
-                                                <label>Laundry Status</label>
+                                            <div className='form-data' id='pantIsWorn'>
+                                                <label>
+                                                    <input
+                                                        name='isWorn' id='isWorn'
+                                                        type='checkbox'
+                                                        value={pant.isWorn}
+                                                        onChange={(e) => { isWornHandler(e, index) }}
+                                                    />
+                                                    Pants worn?
+                                                </label>
                                             </div>
                                         </form>
-                                        <h6>Create A Pair</h6>
+                                        <img src={pant.imageURL} alt='' id='pantImage' />
                                     </div>
                                 </div>
                             )
                         })}
                     </div>
+                    <h6>Create A Pair</h6>
                 </div>
             </div>
             <div className='footer'>

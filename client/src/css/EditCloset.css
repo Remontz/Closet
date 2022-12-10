@@ -5,37 +5,101 @@
     padding: 0% 10%
 }
 
+.shirts {
+    display: flex;
+    justify-content: center;
+}
+.pants {
+    display: flex;
+    justify-content: center;
+}
+
 .shirts-info {
-    border: 3px dashed black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    padding-left: 20%;
 }
+.pants-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
 .shirt-details {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
+    align-content: center;
     border: 2px solid black;
-    padding: 10px;
-    margin: 10px;
-    max-width: 75%;
+    width: 65%;
+    padding: 25px;
 }
-
-.type-size-DIV {
+.pant-details {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-content: center;
+    border: 2px solid black;
+    width: 65%;
+    padding: 25px;
 }
-.material-length--isWorn-color-DIV {
+
+.shirt-form {
     display: flex;
-    flex-direction: space-between;
-    padding: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid black;
+    padding: 25px;
+    border-radius: 30%;
 }
-.material-length-DIV, .isWorn-color-DIV {
-    padding: 5px;
+.pant-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid black;
+    padding: 25px;
+    border-radius: 30%;
 }
+#shirtData {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: space-between;
+    width: 800px;
+}
+.form-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    height: 150px;
+}
+
+#form-inputs > * {
+    margin-top: 10px;
+    padding-top: 10px;
+}
+#weather {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-self: center;
+}
+
 #isWorn {
     outline: 1px solid black;
+}
+#shirtImage {
+    height: 150px;
+    width: 150px;
+    align-self: center;
+}
+#pantImage {
+    height: 200px;
+    width: 300px;
+    align-self: center;
 }
