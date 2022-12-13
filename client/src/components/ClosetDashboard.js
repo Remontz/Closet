@@ -28,8 +28,8 @@ const ClosetDashboard = (props) => {
             .get(`http://localhost:8000/api/closet/${id}`)
             .then((response) => {
                 setCloset(response.data)
-                setUser(response.data.user)
-                setUserName(response.data.user.name)
+                setUser(response.data.user[0])
+                setUserName(response.data.user[0].name)
                 setClosetName(response.data.closetName)
                 setClosetImage(response.data.closetImage)
 
@@ -119,8 +119,8 @@ const ClosetDashboard = (props) => {
                     </Link>
                 </div>
                 <div>
-                    <Link to={`/laundry/${closet._id}`}>
-                        <button>Add New Item</button>
+                    <Link to={`/edit/${closet._id}`}>
+                        <button>Add New or Edit an Item</button>
                     </Link>
                     <img src='https://www.creativefabrica.com/wp-content/uploads/2019/02/Support-icon-by-arus.jpg' alt='' height='25px' width='25px' />
                 </div>

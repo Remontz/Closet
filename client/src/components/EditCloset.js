@@ -17,6 +17,7 @@ const EditCloset = (props) => {
     const navigate = useNavigate()
     const [shirts, setShirts] = useState([{ shirtType: "", shirtMaterial: "", sleeveType: "", weather: "", imageURL: "", size: "", color: "", isWorn: null }])
     let updatedShirtValue = ""
+    const newShirts = useRef({})
     const shirtType = useRef("")
     const shirtMaterial = useRef("")
     const shirtSleeveType = useRef("")
@@ -26,7 +27,7 @@ const EditCloset = (props) => {
     const shirtColor = useRef("")
     const isShirtWorn = useRef()
     const [creatingShirt, setCreatingShirt] = useState(false)
-    const x = creatingShirt
+    let z = creatingShirt
 
     const [pants, setPants] = useState([{ isWorn: null, pantMaterial: "", pantLength: null, waistSize: null, weather: "", imageURL: "", color: "" }])
     const pantWaistSizes = []
@@ -135,8 +136,30 @@ const EditCloset = (props) => {
     }
     const createShirtHandler = (e) => {
         e.preventDefault()
-        shirts.push({ shirtType: shirtType.current, shirtMaterial: shirtMaterial.current, sleeveType: shirtSleeveType.current, weather: shirtWeather.current, imageURL: shirtImageURL.current, size: shirtSize.current, color: shirtColor.current, isWorn: isShirtWorn.current })
+        newShirts.current = { shirtType: shirtType.current, shirtMaterial: shirtMaterial.current, sleeveType: shirtSleeveType.current, weather: shirtWeather.current, imageURL: shirtImageURL.current, size: shirtSize.current, color: shirtColor.current, isWorn: false }
+        shirts[shirts.length] = newShirts.current
+
+
+        axios
+            .put(`http://localhost:8000/api/closet/${id}`, {
+                shirts: shirts
+            })
+            .then((response) => {
+                navigate(`/edit/${id}`)
+            })
+            .catch((err) => {
+                setErrors(err.response)
+            })
+
+        shirtType.current = ""
+        shirtMaterial.current = ""
+        shirtSleeveType.current = ""
+        shirtWeather.current = ""
+        shirtImageURL.current = ""
+        shirtSize.current = ""
+        shirtColor.current = ""
     }
+
 
     const isWornHandler = (e, index) => {
         e.preventDefault()
@@ -502,6 +525,7 @@ const EditCloset = (props) => {
                                                         }))
                                                     }}
                                                 />
+                                                {/* Change: appending newShirts Obj then pushing into shirts(State) */}
                                             </div>
                                         </form>
                                     </div>
@@ -510,9 +534,9 @@ const EditCloset = (props) => {
                         })}
                     </div>
                     <h3>Create a Shirt</h3>
-                    <button onClick={createShirtForm}>{x ? 'Creating' : 'Create a Shirt'}</button>
+                    <button onClick={createShirtForm}>{z ? 'Creating' : 'Create a Shirt'}</button>
                     {
-                        x && (
+                        z && (
                             <div id='box'>
                                 <div className='shirt-details'>
                                     <form className='create-shirt-form shirt-details' onSubmit={createShirtHandler}>
@@ -689,6 +713,7 @@ const EditCloset = (props) => {
                                                     onChange={(e) => { shirtImageURL.current = (e.target.value) }}
                                                 />
                                             </div>
+                                            <input className='submit-btn' type='submit' value='Add Shirt' />
                                         </div>
                                     </form>
                                 </div>
