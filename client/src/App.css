@@ -2,6 +2,7 @@
 @import './css/ClosetDashboard.css';
 @import './css/Create.css';
 @import './css/EditCloset.css';
+@import './css/DisplayLaundry.css';
 
 .App {
   text-align: center;

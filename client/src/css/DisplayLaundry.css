@@ -1,0 +1,48 @@
+.main {
+    display: flex;
+}
+.body {
+    outline: 1px dashed  black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color:darkslategray;
+    height: max-content;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    color: aliceblue;
+    border-bottom: 3px double darkblue;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    gap: 150px;
+    background-color: steelblue;
+    margin: 10px;
+    height: 40px;
+    outline: 1px solid white;
+}
+
+#cleanPants, #dirtyPants, #cleanShirts, #dirtyShirts {
+    height: 150px;
+    width: 150px;
+}
+
+#dirtyLaundry {
+    width: 120px;
+    height: 320px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}

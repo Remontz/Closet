@@ -7,18 +7,19 @@ import '../App.css'
 const ClosetDashboard = (props) => {
     const { id } = useParams()
     const [closet, setCloset] = useState({})
+    const [closetName, setClosetName] = useState("")
+    const [closetImage, setClosetImage] = useState("")
+
+    const [user, setUser] = useState({})
     const scrolls = useRef(0)
     const scrollsP = useRef(0)
     const [errors, setErrors] = useState({})
-    const [user, setUser] = useState({})
     const [userName, setUserName] = useState("")
-    const [closetName, setClosetName] = useState("")
-    const [closetImage, setClosetImage] = useState("")
     console.log("Shirts and Pants")
     const [shirts, setShirts] = useState([])
     const currentShirt = useRef("")
     const [shirtCurrent, setShirtCurrent] = useState("")
-    const [pants, setPants] = useState({})
+    const [pants, setPants] = useState([])
     const currentPant = useRef("")
     const [pantCurrent, setPantCurrent] = useState("")
     console.log(pantCurrent)
@@ -28,6 +29,7 @@ const ClosetDashboard = (props) => {
             .get(`http://localhost:8000/api/closet/${id}`)
             .then((response) => {
                 setCloset(response.data)
+                console.log(user)
                 setUser(response.data.user[0])
                 setUserName(response.data.user[0].name)
                 setClosetName(response.data.closetName)
@@ -45,7 +47,7 @@ const ClosetDashboard = (props) => {
             .catch((err) => {
                 setErrors(err.response)
             })
-    }, [])
+    })
 
 
     const handleNextShirt = (idFromBelow) => {
@@ -105,63 +107,77 @@ const ClosetDashboard = (props) => {
     }
 
     return (
-        <div className='dash-body'>
-            <div className='dash-nav'>
-                <div className='title'><h1>{userName}'s Dashboard</h1> </div>
-                <div className='nav-links'>
-                    <Link to={`/laundry/${closet._id}`}>
-                        <img src='https://cdn-icons-png.flaticon.com/512/3721/3721818.png' alt='' height='30px' width='30px' />
-                    </Link>
-                    <Link to={`/edit/${closet._id}`}>
-                        <img src='https://cdn-icons-png.flaticon.com/512/649/649100.png' alt='' height='30px' weight='30px' />
-                    </Link>
-                    <Link><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkYSptom0k0BqL39WJ-lZCKoEb0e4gD3-Lg&usqp=CAU' alt='' height='50px' weight='50px' />
-                    </Link>
-                </div>
-                <div>
-                    <Link to={`/edit/${closet._id}`}>
-                        <button>Add New or Edit an Item</button>
-                    </Link>
-                    <img src='https://www.creativefabrica.com/wp-content/uploads/2019/02/Support-icon-by-arus.jpg' alt='' height='25px' width='25px' />
+        <div className='body'>
+            <div className='nav'>
+                <div className='title'>
+                    <h1>{userName}'s Dashboard</h1>
+                    <h3>{closetName}</h3>
                 </div>
             </div>
-            <div className='dash-main'>
+            <div>
+                <div className='nav-links'>
+                    <div>
+                        <Link to={`/laundry/${closet._id}`}>
+                            <img src='https://cdn-icons-png.flaticon.com/512/3721/3721818.png' alt='' id='nav-icons' />
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to={`/edit/${closet._id}`} id='addNewBtn'>
+                            <button>Add New or Edit an Item</button>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to={`/edit/${closet._id}`}>
+                            <img src='https://cdn-icons-png.flaticon.com/512/649/649100.png' alt='' id='nav-icons' />
+                        </Link>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div className='main'>
                 <div className='dash-left'>
-                    <ul>
-                        <li className='closet-links' id='shirts'>View All Shirts</li>
-                        <li className='closet-links' id='pants'>View All Pants</li>
-                        {/* <li className='closet-links' id='dresses'>View All Dresses</li>
-                        <li className='closet-links' id='shoes'>View All Shoes</li>
-                        <li className='closet-links' id='accessories'>View Hats/Accessories</li>
-                        <li className='closet-links' id='pajamas'>View All Pajamas</li> */}
-                    </ul>
-                    <br />
-                    <ul>
-                        <li className='closet-links' id='warm'>View Warm WX Clothes</li>
-                        <li className='closet-links' id='cold'>View Cold WX Clothes</li>
-                    </ul>
+                    <div>
+                        <h4>All Shirts</h4>
+                        <div className='allShirts'>
+                            {shirts.map((shirt, index) => {
+                                return (
+                                    <div key={index}>
+                                        <img src={shirt.imageURL} alt='allImages' id='allImages' />
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
                 </div>
                 <div className='dash-center'>
 
-                    <div id='tops' width='100px' height='100px'>
-                        <button onClick={() => handleNextShirt(closet._id)}>scroll</button>
-                        <img src={shirtCurrent} alt='' height='100px' width='100px' />
-                        <button onClick={() => handlePreviousShirt(closet._id)}>scroll</button>
+                    <div id='tops'>
+                        <button id='scrollButtons' onClick={() => handleNextShirt(closet._id)}>scroll</button>
+                        <img src={shirtCurrent} alt='Current Shirt' id='currentShirt' />
+                        <button id='scrollButtons' onClick={() => handlePreviousShirt(closet._id)}>scroll</button>
                     </div>
-                    <div id='continue'>
-                        <button id='createPlus'>+</button>
-                    </div>
-                    <div id='bottom' width='100px' height='100px'>
-                        <button onClick={() => handleNextPant(closet._id)}>scroll</button>
-                        <img src={pantCurrent} alt='' height='100px' width='100px' />
-                        <button onClick={() => handlePreviousPant(closet._id)}>scroll</button>
+                    <div id='bottom'>
+                        <button id='scrollButtons' onClick={() => handleNextPant(closet._id)}>scroll</button>
+                        <img src={pantCurrent} alt='Current Pants' id='currentPant' />
+                        <button id='scrollButtons' onClick={() => handlePreviousPant(closet._id)}>scroll</button>
                     </div>
                 </div>
-                {/* <div className='dash-right'>
-                    <img src='' alt='' height='120px' width='120px' />
-                    <p><span>##</span> times worn</p>
-
-                </div> */}
+                <div className='dash-right'>
+                    <div>
+                        <h4>All Pants</h4>
+                        <div className='allPants'>
+                            {pants.map((pant, index) => {
+                                return (
+                                    <div key={index}>
+                                        <img src={pant.imageURL} alt='' id='allImages' />
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
